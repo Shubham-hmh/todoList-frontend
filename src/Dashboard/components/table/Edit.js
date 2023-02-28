@@ -31,7 +31,7 @@ const Edit = () => {
 
     const getdata = async () => {
 
-        const res = await fetch(`http://localhost:5000/find/${id}`, {
+        const res = await fetch(`https://todolist-api-6olz.onrender.com/find/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -58,7 +58,7 @@ const Edit = () => {
     const updateUser=async(e)=>{
         e.preventDefault();
         const {title,description,status,dueDate}=inpval;
-        const res2 =await fetch(`http://localhost:5000/updateUser/${id}`,{
+        const res2 =await fetch(`https://todolist-api-6olz.onrender.com/updateUser/${id}`,{
             method:"PATCH",
             headers:{
                 "Content-Type":"application/json"

@@ -9,39 +9,6 @@ const Widget = ({ type }) => {
     let data;
 
     const [chartData, setChartData] = useState([]);
-//     const getData = async () => {
-//         const res = await fetch("http://localhost:5000/", {
-//             method: "GET",
-//             headers: {
-//                 "Content-Type": "application/json"
-//             }
-//         });
-//         const data = await res.json();
-//         console.log(data);
-//         if (res.status === 400 || !data) {
-//             console.log("error ");
-//         } else {
-//             setChartData(data);
-
-//         }
-//     }
-
-//     useEffect(() => {
-//         getData();
-//     }, []);
-
-//     //
-//    const dayCounts = chartData.reduce(function (result, order) {
-//         var day = moment(order.createdAt).format("YYYY-MM-DD");
-//         if (!result[day]) {
-//             result[day] = 0;
-//         }
-//         result[day]++;
-//         return result;
-//     },{});
-    
-//     let keys=Object.keys(dayCounts)
-//     console.log(keys,"hi");
 
     let amount = chartData.length;
     let percentage = chartData.length;

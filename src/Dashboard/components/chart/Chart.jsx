@@ -9,7 +9,7 @@ const Chart = () => {
   const [chartData, setChartData] = useState([]);
 
   const getData = async () => {
-    const res = await fetch("http://localhost:5000/", {
+    const res = await fetch("https://todolist-api-6olz.onrender.com/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json"

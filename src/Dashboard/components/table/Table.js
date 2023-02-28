@@ -19,7 +19,7 @@ const Table = (props) => {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const getData = async () => {
-        const res = await fetch("http://localhost:5000/", {
+        const res = await fetch("https://todolist-api-6olz.onrender.com/", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -44,7 +44,7 @@ const Table = (props) => {
     props.alert(items);
 
     const deleteUser = async (id) => {
-        const res2 = await fetch(`http://localhost:5000/deleteUser/${id}`, {
+        const res2 = await fetch(`https://todolist-api-6olz.onrender.com/deleteUser/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"

@@ -31,7 +31,7 @@ const Form = () => {
 
         const { title, description, dueDate, status } = inpval;
 
-        const res = await fetch("http://localhost:5000/", {
+        const res = await fetch("https://todolist-api-6olz.onrender.com/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
