@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink, useParams,useNavigate} from 'react-router-dom'
+import { NavLink, useParams, useNavigate } from 'react-router-dom'
 
 
 const Edit = () => {
-
-    const navigate =useNavigate();
+    const navigate = useNavigate();
     const [inpval, setINP] = useState({
-      title:"",
-      description:"",
-      status:"",
-      dueDate:""
+        title: "",
+        description: "",
+        status: "",
+        dueDate: ""
     })
 
     const setdata = (e) => {
@@ -25,13 +24,12 @@ const Edit = () => {
 
 
     const { id } = useParams("");
-    console.log(id);
 
 
 
     const getdata = async () => {
 
-        const res = await fetch(`https://todolist-api-6olz.onrender.com/find/${id}`, {
+        const res = await fetch(`http://localhost:5000/find/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -52,29 +50,29 @@ const Edit = () => {
     }
 
     useEffect(() => {
-       getdata();
+        getdata();
     }, []);
 
-    const updateUser=async(e)=>{
+    const updateUser = async (e) => {
         e.preventDefault();
-        const {title,description,status,dueDate}=inpval;
-        const res2 =await fetch(`https://todolist-api-6olz.onrender.com/updateUser/${id}`,{
-            method:"PATCH",
-            headers:{
-                "Content-Type":"application/json"
+        const { title, description, status, dueDate } = inpval;
+        const res2 = await fetch(`http://localhost:5000/updateUser/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
             },
-            body:JSON.stringify({
-                title,description,status,dueDate
+            body: JSON.stringify({
+                title, description, status, dueDate
             })
         });
 
-        const data2 =await res2.json();
+        const data2 = await res2.json();
         console.log(data2);
 
-        if(res2.status===400 || !data2){
+        if (res2.status === 400 || !data2) {
             alert("fill the data ");
         }
-        else{
+        else {
             alert("data has been updated..")
             navigate("/");
         }
@@ -106,7 +104,7 @@ const Edit = () => {
                     </div>
 
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
-                    <label for="exampleInputPassword1" class="form-label">Status</label>
+                        <label for="exampleInputPassword1" class="form-label">Status</label>
                         <input type="text" name='status' value={inpval.status} onChange={setdata} class="form-control" id="exampleInputPassword1" />
 
                     </div>
