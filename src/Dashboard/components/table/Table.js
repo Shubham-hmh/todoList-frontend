@@ -41,7 +41,7 @@ const Table = (props) => {
     props.alert(items);
 
     const deleteUser = async (id) => {
-        const res2 = await fetch(`https://todolist-api-6olz.onrender.com/deleteUser/api/todo/${id}`, {
+        const res2 = await fetch(`https://todolist-api-6olz.onrender.com/api/todo/deleteUser/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"

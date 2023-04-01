@@ -69,7 +69,7 @@ const Edit = () => {
         e.preventDefault();
         const { title, description, status, dueDate } = inpval;
 
-        const res2 = await fetch(`http://localhost:5000/updateUser/api/todo/${id}`, {
+        const res2 = await fetch(`https://todolist-api-6olz.onrender.com/api/todo/updateUser/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
