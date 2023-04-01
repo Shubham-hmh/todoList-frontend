@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, useParams, useNavigate } from 'react-router-dom'
 
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 
+
+const signUpSchema = yup.object({
+    title: yup.string().required("Title is Required"),
+    description: yup.string().required("Description is Required"),
+    dueDate: yup.string().required("DueDate is Required"),
+    status: yup.string().required("Status is Required"),
+
+});
 const Edit = () => {
     const navigate = useNavigate();
     const [inpval, setINP] = useState({
@@ -10,6 +20,8 @@ const Edit = () => {
         status: "",
         dueDate: ""
     })
+
+
 
     const setdata = (e) => {
         console.log(e.target.value);
@@ -56,7 +68,8 @@ const Edit = () => {
     const updateUser = async (e) => {
         e.preventDefault();
         const { title, description, status, dueDate } = inpval;
-        const res2 = await fetch(`http://localhost:5000/updateUser/${id}`, {
+
+        const res2 = await fetch(`http://localhost:5000/updateUser/api/todo/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
@@ -67,6 +80,7 @@ const Edit = () => {
         });
 
         const data2 = await res2.json();
+        
         console.log(data2);
 
         if (res2.status === 400 || !data2) {
@@ -81,6 +95,8 @@ const Edit = () => {
 
     }
 
+
+   const { title, description, status, dueDate } = inpval;
 
 
 
@@ -113,6 +129,10 @@ const Edit = () => {
                     <button type="submit" onClick={updateUser} class="btn btn-primary">Submit</button>
                 </div>
             </form>
+
+      
+
+
         </div>
     )
 }

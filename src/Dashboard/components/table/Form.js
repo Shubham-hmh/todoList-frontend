@@ -17,7 +17,7 @@ const Form = () => {
 
     const addinpdata = async (e) => {
         const { title, description, dueDate, status } = e;
-        const res = await fetch("https://todolist-api-6olz.onrender.com/", {
+        const res = await fetch("https://todolist-api-6olz.onrender.com/api/todo/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

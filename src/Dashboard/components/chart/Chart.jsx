@@ -1,16 +1,16 @@
 import "./chart.scss"
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer ,BarChart ,Legend, Bar } from 'recharts';
 import { useState, useEffect } from "react";
 import moment from "moment";
 
 
 const Chart = () => {
-  
+
 
   const [chartData, setChartData] = useState([]);
 
   const getData = async () => {
-    const res = await fetch("https://todolist-api-6olz.onrender.com/", {
+    const res = await fetch("https://todolist-api-6olz.onrender.com/api/todo", {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
@@ -50,26 +50,34 @@ const Chart = () => {
 
     <>
 
-      <div className="chart">
+      <div className="chart d-flex flex-wrap">
         <div className="title">Total todo's per day ...........</div>
-        <ResponsiveContainer width="100%" aspect={2 / 1}>
-          <AreaChart width={730} height={250} data={myArr}
-            margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-            <defs>
-              <linearGradient id="total" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
-              </linearGradient>
-            </defs>
-            <YAxis />
+        <div>
+          <ResponsiveContainer width="100%" aspect={2 / 1}>
+            <AreaChart width={730} height={250} data={myArr}
+              margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+              <defs>
+                <linearGradient id="total" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <YAxis />
 
 
-            <XAxis dataKey="date" stroke="gray" />
-            <CartesianGrid strokeDasharray="3 3" className="charGrid" />
-            <Tooltip />
-            <Area type="monotone" dataKey="count" stroke="#8884d8" fillOpacity={1} fill="url(#total)" />
-          </AreaChart>
-        </ResponsiveContainer>
+              <XAxis dataKey="date" stroke="gray" />
+              <CartesianGrid strokeDasharray="3 3" className="charGrid" />
+              <Tooltip />
+              <Area type="monotone" dataKey="count" stroke="#8884d8" fillOpacity={1} fill="url(#total)" />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+        <div>
+     
+        </div>
+
+
+
 
       </div>
     </>
