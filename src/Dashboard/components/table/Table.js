@@ -6,19 +6,19 @@ import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { DateRangePicker } from "react-date-range";
+
 const Table = (props) => {
 
 
 
     const [getuserdata, setUserdata] = useState([]);
     const [allUserdata, setAllUserdata] = useState([]);
-
     const items = getuserdata.length;
 
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const getData = async () => {
-        const res = await fetch("https://todolist-api-6olz.onrender.com/", {
+        const res = await fetch("https://todolist-api-6olz.onrender.com/api/todo", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -41,7 +41,7 @@ const Table = (props) => {
     props.alert(items);
 
     const deleteUser = async (id) => {
-        const res2 = await fetch(`https://todolist-api-6olz.onrender.com/deleteUser/${id}`, {
+        const res2 = await fetch(`https://todolist-api-6olz.onrender.com/deleteUser/api/todo/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -63,7 +63,8 @@ const Table = (props) => {
     const handleDragEnd = (results) => {
         let tempUser = [...getuserdata];
         let [selectedRow] = tempUser.splice(results.source.index, 1);
-        tempUser.splice(results.destination.index, 0, selectedRow);
+         tempUser.splice(results.destination.index, 0, selectedRow);
+         console.log(selectedRow,"👍👍");
         setUserdata(tempUser);
     }
 
@@ -99,7 +100,10 @@ const Table = (props) => {
 
 
 
+ 
+
     return (
+
         <>
 
             <DateRangePicker
@@ -139,6 +143,8 @@ const Table = (props) => {
                                                         <>
                                                             <Draggable key={element._id}
                                                                 draggableId={element._id}
+                                                        
+
                                                                 index={index}>
                                                                 {
                                                                     (provided) => (
@@ -179,13 +185,12 @@ const Table = (props) => {
 
                         </table>
                     </DragDropContext>
-
-
                 </div>
             </div>
         </>
 
     )
-}
+
+                            }
 
 export default Table
