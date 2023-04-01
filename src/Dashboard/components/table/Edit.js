@@ -41,7 +41,7 @@ const Edit = () => {
 
     const getdata = async () => {
 
-        const res = await fetch(`http://localhost:5000/find/${id}`, {
+        const res = await fetch(`https://todolist-api-6olz.onrender.com/api/todo/find/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
